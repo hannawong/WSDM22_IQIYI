@@ -3,7 +3,7 @@
 ## Directory
 
 Organize the data as the following directory tree:
-
+```py
 - data
 - raw_data
     - app_launch_logs.csv
@@ -16,3 +16,4 @@ Organize the data as the following directory tree:
 - model_tools.py
 - model.py
 - train.py
+```
