@@ -8,6 +8,7 @@ np.random.seed(2021)
 launch = pd.read_csv('raw_data/app_launch_logs.csv')
 test = pd.read_csv('raw_data/test-a.csv')
 print(launch)
+print(launch["launch_type"].value_counts())
 print(test)
 
 print(launch.date.min(), launch.date.max())
@@ -37,7 +38,6 @@ launch_grp['end_date'] = launch_grp.launch_date.apply(choose_end_date)
 launch_grp['label'] = launch_grp.apply(get_label, axis=1)
 
 train = launch_grp[['user_id', 'end_date', 'label']]
-print(train)
 
 test['label'] = -1
 print(test)
@@ -48,7 +48,7 @@ print(data)
 data = data.merge(launch_grp[['user_id', 'launch_type', 'launch_date']],
                   how='left',
                   on='user_id')
-print(data)
+
 
 
 # get latest 32 days([end_date-31, end_date]) launch type sequence
@@ -63,7 +63,8 @@ def gen_launch_seq(row):
 
 
 data['launch_seq'] = data.apply(gen_launch_seq, axis=1)
-print(data)
+print(data["launch_seq"])
+
 
 
 data.drop(columns=['launch_date', 'launch_type'], inplace=True)

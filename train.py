@@ -27,10 +27,8 @@ def random_seed(seed):
 random_seed(2021)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device
 
 data = pd.read_pickle('data/all_data.pkl')
-data.head()
 
 user_lbe = LabelEncoder()
 data['user_id'] = user_lbe.fit_transform(data['user_id'])

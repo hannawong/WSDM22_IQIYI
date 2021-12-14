@@ -43,9 +43,9 @@ def fit(model, train_loader, optimizer, criterion, device):
     label_list = []
 
     for user_id, launch_seq, label in tqdm(train_loader):
-        user_id = user_id.long().to(device)
-        launch_seq = launch_seq.long().to(device)
-        label = torch.tensor(label).float().to(device)
+        user_id = user_id.long().to(device) ##[128]
+        launch_seq = launch_seq.long().to(device) ##[128,32]
+        label = torch.tensor(label).float().to(device) ##[128]
 
         pred = model(user_id, launch_seq)
 
